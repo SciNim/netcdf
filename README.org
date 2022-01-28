@@ -1,0 +1,6 @@
+* NetCDF
+
+This is a *very* rough set of bindings to the NetCDF library. Mainly
+aimed at the NetCDF classic files (as the NetCDF4 files can be read
+via [[https://github.com/Vindaar/nimhfd5][nimhdf5]].
+
