@@ -36,9 +36,17 @@ const
 
 type
   `type`* = cint
-  ## TODO: is this correct? uhhh
-  ptrdiff_t* {.importc: "ptrdiff_t".} = pointer
 
+## `ptrdiff_t` apparently is the type that you get when subtracting two pointers.
+## So I suppose a distinct `int` / `int32` sounds reasonable for now
+when sizeof(pointer) == 8:
+  type
+    ptrdiff_t* {.importc: "ptrdiff_t", header: "stddef.h".} = distinct int
+elif sizeof(pointer) == 4:
+  type
+    ptrdiff_t* {.importc: "ptrdiff_t", header: "stddef.h".} = distinct int32
+else:
+  {.error: "Unsupported architecture with pointer size of " & $sizeof(pointer).}
 ##
 ##   The netcdf external data types
 ##
