@@ -4,3 +4,12 @@ This is a *very* rough set of bindings to the NetCDF library. Mainly
 aimed at the NetCDF classic files (as the NetCDF4 files can be read
 via [[https://github.com/Vindaar/nimhfd5][nimhdf5]].
 
+** NetCDF shared library name
+
+If the NetCDF shared library is not called =(lib)netcdf.so/dll/dynlib=
+(linux, windows, osx) on your system, you can overwrite the name
+using:
+#+begin_src nim
+-d:netcdf=newName
+#+end_src
+This will set the name to =(lib)newname.so/dll/dynlib=

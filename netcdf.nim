@@ -16,8 +16,23 @@
 #  discard
 ### ! The nc_type type is just an int.
 
-## NOTE: this probably needs to be adjusted, I don't have a symlink to `libnetcdf.so`
-const libnetcdf* = "libnetcdf.so.15"
+when defined(windows):
+  const
+    libSuffix = ".dll"
+    libPrefix = ""
+elif defined(macosx):
+  const
+    libSuffix = ".dylib"
+    libPrefix = "lib"
+else:
+  const
+    libSuffix = ".so(||.15)"
+    libPrefix = "lib"
+const
+  netcdf {.strdefine.} = "netcdf"
+  ## TODO: allow more options
+  libnetcdf* = libPrefix & netcdf & libSuffix
+
 
 type
   `type`* = cint
