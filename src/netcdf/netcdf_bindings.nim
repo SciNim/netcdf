@@ -660,7 +660,7 @@ proc create*(path: cstring; cmode: cint; ncidp: ptr cint): cint {.importc: "nc_c
     dynlib: libnetcdf.}
 proc nc_open*(path: cstring; mode: cint; chunksizehintp: ptr csize_t; ncidp: ptr cint): cint {.
     importc: "nc__open", dynlib: libnetcdf.}
-proc open*(path: cstring; mode: cint; ncidp: ptr cint): cint {.importc: "nc_open",
+proc open*(path: cstring; mode: cint; ncidp: var cint): cint {.importc: "nc_open",
     dynlib: libnetcdf.}
 ##  Learn the path used to open/create the file.
 
