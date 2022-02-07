@@ -289,7 +289,7 @@ const
 ## * In nc__enddef(), align to the buffer size.
 
 const
-  NC_ALIGN_CHUNK* = ((-1).csize)
+  NC_ALIGN_CHUNK* = csize_t.high
 
 ## * Size argument to nc_def_dim() for an unlimited dimension.
 
@@ -1130,9 +1130,9 @@ proc put_att_string*(ncid: cint; varid: cint; name: cstring; len: csize_t;
 proc get_att_string*(ncid: cint; varid: cint; name: cstring; ip: cstringArray): cint {.
     importc: "nc_get_att_string", dynlib: libnetcdf.}
 proc put_att_uchar*(ncid: cint; varid: cint; name: cstring; xtype: `type`; len: csize_t;
-                   op: ptr cuchar): cint {.importc: "nc_put_att_uchar",
+                   op: ptr char): cint {.importc: "nc_put_att_uchar",
                                        dynlib: libnetcdf.}
-proc get_att_uchar*(ncid: cint; varid: cint; name: cstring; ip: ptr cuchar): cint {.
+proc get_att_uchar*(ncid: cint; varid: cint; name: cstring; ip: ptr char): cint {.
     importc: "nc_get_att_uchar", dynlib: libnetcdf.}
 proc put_att_schar*(ncid: cint; varid: cint; name: cstring; xtype: `type`; len: csize_t;
                    op: ptr cchar): cint {.importc: "nc_put_att_schar",
@@ -1217,9 +1217,9 @@ proc put_var1_text*(ncid: cint; varid: cint; indexp: ptr csize_t; op: cstring): 
     importc: "nc_put_var1_text", dynlib: libnetcdf.}
 proc get_var1_text*(ncid: cint; varid: cint; indexp: ptr csize_t; ip: cstring): cint {.
     importc: "nc_get_var1_text", dynlib: libnetcdf.}
-proc put_var1_uchar*(ncid: cint; varid: cint; indexp: ptr csize_t; op: ptr cuchar): cint {.
+proc put_var1_uchar*(ncid: cint; varid: cint; indexp: ptr csize_t; op: ptr char): cint {.
     importc: "nc_put_var1_uchar", dynlib: libnetcdf.}
-proc get_var1_uchar*(ncid: cint; varid: cint; indexp: ptr csize_t; ip: ptr cuchar): cint {.
+proc get_var1_uchar*(ncid: cint; varid: cint; indexp: ptr csize_t; ip: ptr char): cint {.
     importc: "nc_get_var1_uchar", dynlib: libnetcdf.}
 proc put_var1_schar*(ncid: cint; varid: cint; indexp: ptr csize_t; op: ptr cchar): cint {.
     importc: "nc_put_var1_schar", dynlib: libnetcdf.}
@@ -1277,10 +1277,10 @@ proc get_vara_text*(ncid: cint; varid: cint; startp: ptr csize_t; countp: ptr cs
                    ip: cstring): cint {.importc: "nc_get_vara_text",
                                      dynlib: libnetcdf.}
 proc put_vara_uchar*(ncid: cint; varid: cint; startp: ptr csize_t; countp: ptr csize_t;
-                    op: ptr cuchar): cint {.importc: "nc_put_vara_uchar",
+                    op: ptr char): cint {.importc: "nc_put_vara_uchar",
                                         dynlib: libnetcdf.}
 proc get_vara_uchar*(ncid: cint; varid: cint; startp: ptr csize_t; countp: ptr csize_t;
-                    ip: ptr cuchar): cint {.importc: "nc_get_vara_uchar",
+                    ip: ptr char): cint {.importc: "nc_get_vara_uchar",
                                         dynlib: libnetcdf.}
 proc put_vara_schar*(ncid: cint; varid: cint; startp: ptr csize_t; countp: ptr csize_t;
                     op: ptr cchar): cint {.importc: "nc_put_vara_schar",
@@ -1356,10 +1356,10 @@ proc get_vars_text*(ncid: cint; varid: cint; startp: ptr csize_t; countp: ptr cs
                    stridep: ptr ptrdiff_t; ip: cstring): cint {.
     importc: "nc_get_vars_text", dynlib: libnetcdf.}
 proc put_vars_uchar*(ncid: cint; varid: cint; startp: ptr csize_t; countp: ptr csize_t;
-                    stridep: ptr ptrdiff_t; op: ptr cuchar): cint {.
+                    stridep: ptr ptrdiff_t; op: ptr char): cint {.
     importc: "nc_put_vars_uchar", dynlib: libnetcdf.}
 proc get_vars_uchar*(ncid: cint; varid: cint; startp: ptr csize_t; countp: ptr csize_t;
-                    stridep: ptr ptrdiff_t; ip: ptr cuchar): cint {.
+                    stridep: ptr ptrdiff_t; ip: ptr char): cint {.
     importc: "nc_get_vars_uchar", dynlib: libnetcdf.}
 proc put_vars_schar*(ncid: cint; varid: cint; startp: ptr csize_t; countp: ptr csize_t;
                     stridep: ptr ptrdiff_t; op: ptr cchar): cint {.
@@ -1439,10 +1439,10 @@ proc get_varm_text*(ncid: cint; varid: cint; startp: ptr csize_t; countp: ptr cs
                    stridep: ptr ptrdiff_t; imapp: ptr ptrdiff_t; ip: cstring): cint {.
     importc: "nc_get_varm_text", dynlib: libnetcdf.}
 proc put_varm_uchar*(ncid: cint; varid: cint; startp: ptr csize_t; countp: ptr csize_t;
-                    stridep: ptr ptrdiff_t; imapp: ptr ptrdiff_t; op: ptr cuchar): cint {.
+                    stridep: ptr ptrdiff_t; imapp: ptr ptrdiff_t; op: ptr char): cint {.
     importc: "nc_put_varm_uchar", dynlib: libnetcdf.}
 proc get_varm_uchar*(ncid: cint; varid: cint; startp: ptr csize_t; countp: ptr csize_t;
-                    stridep: ptr ptrdiff_t; imapp: ptr ptrdiff_t; ip: ptr cuchar): cint {.
+                    stridep: ptr ptrdiff_t; imapp: ptr ptrdiff_t; ip: ptr char): cint {.
     importc: "nc_get_varm_uchar", dynlib: libnetcdf.}
 proc put_varm_schar*(ncid: cint; varid: cint; startp: ptr csize_t; countp: ptr csize_t;
                     stridep: ptr ptrdiff_t; imapp: ptr ptrdiff_t; op: ptr cchar): cint {.
@@ -1521,9 +1521,9 @@ proc put_var_text*(ncid: cint; varid: cint; op: cstring): cint {.
     importc: "nc_put_var_text", dynlib: libnetcdf.}
 proc get_var_text*(ncid: cint; varid: cint; ip: cstring): cint {.
     importc: "nc_get_var_text", dynlib: libnetcdf.}
-proc put_var_uchar*(ncid: cint; varid: cint; op: ptr cuchar): cint {.
+proc put_var_uchar*(ncid: cint; varid: cint; op: ptr char): cint {.
     importc: "nc_put_var_uchar", dynlib: libnetcdf.}
-proc get_var_uchar*(ncid: cint; varid: cint; ip: ptr cuchar): cint {.
+proc get_var_uchar*(ncid: cint; varid: cint; ip: ptr char): cint {.
     importc: "nc_get_var_uchar", dynlib: libnetcdf.}
 proc put_var_schar*(ncid: cint; varid: cint; op: ptr cchar): cint {.
     importc: "nc_put_var_schar", dynlib: libnetcdf.}
@@ -1621,35 +1621,35 @@ proc dump_data*(ncid: cint; xtypeid: `type`; memory: pointer; count: csize_t;
 ##  Begin Deprecated, same as functions with "_ubyte" replaced by "_uchar"
 
 proc put_att_ubyte*(ncid: cint; varid: cint; name: cstring; xtype: `type`; len: csize_t;
-                   op: ptr cuchar): cint {.importc: "nc_put_att_ubyte",
+                   op: ptr uint8): cint {.importc: "nc_put_att_ubyte",
                                        dynlib: libnetcdf.}
-proc get_att_ubyte*(ncid: cint; varid: cint; name: cstring; ip: ptr cuchar): cint {.
+proc get_att_ubyte*(ncid: cint; varid: cint; name: cstring; ip: ptr uint8): cint {.
     importc: "nc_get_att_ubyte", dynlib: libnetcdf.}
-proc put_var1_ubyte*(ncid: cint; varid: cint; indexp: ptr csize_t; op: ptr cuchar): cint {.
+proc put_var1_ubyte*(ncid: cint; varid: cint; indexp: ptr csize_t; op: ptr uint8): cint {.
     importc: "nc_put_var1_ubyte", dynlib: libnetcdf.}
-proc get_var1_ubyte*(ncid: cint; varid: cint; indexp: ptr csize_t; ip: ptr cuchar): cint {.
+proc get_var1_ubyte*(ncid: cint; varid: cint; indexp: ptr csize_t; ip: ptr uint8): cint {.
     importc: "nc_get_var1_ubyte", dynlib: libnetcdf.}
 proc put_vara_ubyte*(ncid: cint; varid: cint; startp: ptr csize_t; countp: ptr csize_t;
-                    op: ptr cuchar): cint {.importc: "nc_put_vara_ubyte",
+                    op: ptr uint8): cint {.importc: "nc_put_vara_ubyte",
                                         dynlib: libnetcdf.}
 proc get_vara_ubyte*(ncid: cint; varid: cint; startp: ptr csize_t; countp: ptr csize_t;
-                    ip: ptr cuchar): cint {.importc: "nc_get_vara_ubyte",
+                    ip: ptr uint8): cint {.importc: "nc_get_vara_ubyte",
                                         dynlib: libnetcdf.}
 proc put_vars_ubyte*(ncid: cint; varid: cint; startp: ptr csize_t; countp: ptr csize_t;
-                    stridep: ptr ptrdiff_t; op: ptr cuchar): cint {.
+                    stridep: ptr ptrdiff_t; op: ptr uint8): cint {.
     importc: "nc_put_vars_ubyte", dynlib: libnetcdf.}
 proc get_vars_ubyte*(ncid: cint; varid: cint; startp: ptr csize_t; countp: ptr csize_t;
-                    stridep: ptr ptrdiff_t; ip: ptr cuchar): cint {.
+                    stridep: ptr ptrdiff_t; ip: ptr uint8): cint {.
     importc: "nc_get_vars_ubyte", dynlib: libnetcdf.}
 proc put_varm_ubyte*(ncid: cint; varid: cint; startp: ptr csize_t; countp: ptr csize_t;
-                    stridep: ptr ptrdiff_t; imapp: ptr ptrdiff_t; op: ptr cuchar): cint {.
+                    stridep: ptr ptrdiff_t; imapp: ptr ptrdiff_t; op: ptr uint8): cint {.
     importc: "nc_put_varm_ubyte", dynlib: libnetcdf.}
 proc get_varm_ubyte*(ncid: cint; varid: cint; startp: ptr csize_t; countp: ptr csize_t;
-                    stridep: ptr ptrdiff_t; imapp: ptr ptrdiff_t; ip: ptr cuchar): cint {.
+                    stridep: ptr ptrdiff_t; imapp: ptr ptrdiff_t; ip: ptr uint8): cint {.
     importc: "nc_get_varm_ubyte", dynlib: libnetcdf.}
-proc put_var_ubyte*(ncid: cint; varid: cint; op: ptr cuchar): cint {.
+proc put_var_ubyte*(ncid: cint; varid: cint; op: ptr uint8): cint {.
     importc: "nc_put_var_ubyte", dynlib: libnetcdf.}
-proc get_var_ubyte*(ncid: cint; varid: cint; ip: ptr cuchar): cint {.
+proc get_var_ubyte*(ncid: cint; varid: cint; ip: ptr uint8): cint {.
     importc: "nc_get_var_ubyte", dynlib: libnetcdf.}
 ##  End Deprecated
 ##  Set the log level. 0 shows only errors, 1 only major messages,
