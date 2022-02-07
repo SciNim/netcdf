@@ -1,0 +1,2 @@
+import netcdf/netcdf_bindings
+export netcdf_bindings
