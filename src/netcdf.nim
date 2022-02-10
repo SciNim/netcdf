@@ -1,3 +1,6 @@
+import netcdf/dimensions
+export dimensions
+
 import netcdf/error_handler
 
 import netcdf/netcdf_bindings

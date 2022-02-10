@@ -1064,7 +1064,7 @@ proc abort*(ncid: cint): cint {.importc: "nc_abort", dynlib: libnetcdf.}
 proc close*(ncid: cint): cint {.importc: "nc_close", dynlib: libnetcdf.}
 proc inq*(ncid: cint; ndimsp, nvarsp, nattsp,
     unlimdimidp: var cint): cint {.importc: "nc_inq", dynlib: libnetcdf.}
-proc inq_ndims*(ncid: cint; ndimsp: ptr cint): cint {.importc: "nc_inq_ndims",
+proc inq_ndims*(ncid: cint; ndimsp: var cint): cint {.importc: "nc_inq_ndims",
     dynlib: libnetcdf.}
 proc inq_nvars*(ncid: cint; nvarsp: ptr cint): cint {.importc: "nc_inq_nvars",
     dynlib: libnetcdf.}
@@ -1088,13 +1088,13 @@ proc inq_format_extended*(ncid: cint; formatp: ptr cint; modep: ptr cint): cint 
 
 proc def_dim*(ncid: cint; name: cstring; len: csize_t; idp: ptr cint): cint {.
     importc: "nc_def_dim", dynlib: libnetcdf.}
-proc inq_dimid*(ncid: cint; name: cstring; idp: ptr cint): cint {.
+proc inq_dimid*(ncid: cint; name: cstring; idp: var cint): cint {.
     importc: "nc_inq_dimid", dynlib: libnetcdf.}
 proc inq_dim*(ncid: cint; dimid: cint; name: cstring; lenp: ptr csize_t): cint {.
     importc: "nc_inq_dim", dynlib: libnetcdf.}
 proc inq_dimname*(ncid: cint; dimid: cint; name: cstring): cint {.
     importc: "nc_inq_dimname", dynlib: libnetcdf.}
-proc inq_dimlen*(ncid: cint; dimid: cint; lenp: ptr csize_t): cint {.
+proc inq_dimlen*(ncid: cint; dimid: cint; lenp: var csize_t): cint {.
     importc: "nc_inq_dimlen", dynlib: libnetcdf.}
 proc rename_dim*(ncid: cint; dimid: cint; name: cstring): cint {.
     importc: "nc_rename_dim", dynlib: libnetcdf.}
