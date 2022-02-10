@@ -1062,8 +1062,8 @@ proc enddef*(ncid: cint): cint {.importc: "nc_enddef", dynlib: libnetcdf.}
 proc sync*(ncid: cint): cint {.importc: "nc_sync", dynlib: libnetcdf.}
 proc abort*(ncid: cint): cint {.importc: "nc_abort", dynlib: libnetcdf.}
 proc close*(ncid: cint): cint {.importc: "nc_close", dynlib: libnetcdf.}
-proc inq*(ncid: cint; ndimsp: ptr cint; nvarsp: ptr cint; nattsp: ptr cint;
-         unlimdimidp: ptr cint): cint {.importc: "nc_inq", dynlib: libnetcdf.}
+proc inq*(ncid: cint; ndimsp, nvarsp, nattsp,
+    unlimdimidp: var cint): cint {.importc: "nc_inq", dynlib: libnetcdf.}
 proc inq_ndims*(ncid: cint; ndimsp: ptr cint): cint {.importc: "nc_inq_ndims",
     dynlib: libnetcdf.}
 proc inq_nvars*(ncid: cint; nvarsp: ptr cint): cint {.importc: "nc_inq_nvars",

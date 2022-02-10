@@ -18,3 +18,8 @@ proc ncOpen*(path: string, mode = omNoWrite): NCid =
 
 proc close*(ncid: NCid) =
   handleError close(ncid.cint)
+
+proc inq*(ncid: NCid): tuple[ndims, nvars, natts, unlimdimid: int] =
+  var ndims, nvars, natts, unlimdimid: cint
+  handleError inq(ncid.cint, ndims, nvars, natts, unlimdimid)
+  (ndims.int, nvars.int, natts.int, unlimdimid.int)
